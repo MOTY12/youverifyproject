@@ -1,38 +1,25 @@
 const express = require('express')
+const dotenv = require('dotenv')
 const app = express()
+
+
+const uniqueRoutes = require('./router/uniqcharacter')
+const permutationRoutes = require('./router/checkpermutation')
+
+dotenv.config()
+
+const apis = process.env.API_URL
 
 
 app.use(express.json())
 
-app.get('/uniqueCharacters', (req, res) => {
+app.use(`${apis}`, uniqueRoutes)
+app.use(`${apis}`, permutationRoutes)
 
-    function uniqueCharacters(str) {
-        for (let i = 0; i < str.length; i++) {
-
-            for (let j = i + 1; j < str.length; j++) {
-                if (str[i] == str[j]) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    let input = "GeeksforGeeks";
-
-
-    if (uniqueCharacters(input) == true) {
-        res.status(200).send("The String " + input + " has all unique characters" + "</br>");
-    } else {
-        res.status(200).send("The String " + input + " has duplicate characters");
-    }
-
+app.get('/', (req, res) => {
+    res.send("hello world")
 })
 
 
-
-app.get('/checkpermutation', (req, res) => {
-
-
-})
 
 app.listen(process.env.PORT || 5000)
