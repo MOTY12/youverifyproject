@@ -31,7 +31,7 @@ router.get('/pandrompermutation', (req, res) => {
 
     // Driver program 
 
-    if (canFormPalindrome("geeksogeeks")) {
+    if (canFormPalindrome("Tact Coa")) {
         res.status(200).json({ message: "Yes" });
     } else {
         res.status(500).json({ message: "NO" });

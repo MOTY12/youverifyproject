@@ -75,9 +75,9 @@ router.get('/Oneaway', (req, res) => {
 
 
 
-    let s1 = "gfg";
+    let s1 = "pale";
 
-    let s2 = "gf";
+    let s2 = "bake";
 
     if (isEditDistanceOne(s1, s2)) {
         res.status(200).json({ message: "Yes" });
