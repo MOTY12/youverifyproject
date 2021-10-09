@@ -1,68 +1,32 @@
-<script>
+const express = require('express')
+const router = express()
 
- 
 
-// Javascript implementation to check if
-
-// characters of a given string can
-
-// be rearranged to form a palindrome
-
- 
-
-    let NO_OF_CHARS = 256;
-
-  
-
-    /* function to check whether characters
-
-    of a string can form a palindrome */
-
+router.get('/pandrompermutation', (req, res) => {
     function canFormPalindrome(str)
 
     {
 
-  
-
-        // Create a count array and initialize all
-
-        // values as 0
-
         let count = Array(NO_OF_CHARS).fill(0);
 
-  
-
-        // For each character in input strings,
-
-        // increment count in the corresponding
-
-        // count array
-
-        for (let i = 0; i < str.length; i++)
-
+        for (let i = 0; i < str.length; i++) {
             count[str[i].charCodeAt()]++;
 
-  
+            let odd = 0;
 
-        // Count odd occurring characters
+            for (let i = 0; i < NO_OF_CHARS; i++) {
 
-        let odd = 0;
+                if ((count[i] & 1) == 1) {
+                    odd++;
 
-        for (let i = 0; i < NO_OF_CHARS; i++) {
+                    if (odd > 1) {
+                        return false;
+                    }
+                }
 
-            if ((count[i] & 1) == 1)
-
-                odd++;
-
-  
-
-            if (odd > 1)
-
-                return false;
-
+            }
         }
 
-  
 
         // Return true if odd count is 0 or 1,
 
@@ -70,30 +34,18 @@
 
     }
 
- 
 
-// Driver program 
 
- 
+    // Driver program 
 
-      if (canFormPalindrome("geeksforgeeks"))
+    if (canFormPalindrome("geeksogeeks")) {
+        console.log("Yes");
+    } else {
+        console.log("No");
+    }
 
-            document.write("Yes");
 
-        else
 
-            document.write("No");
+})
 
-  
-
-        if (canFormPalindrome("geeksogeeks"))
-
-            document.write("Yes");
-
-        else
-
-            document.write("No");
-
-       
-
-</script>
+module.exports = router
